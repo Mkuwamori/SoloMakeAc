@@ -40,7 +40,7 @@ public class HomingLaser : MonoBehaviour
         if (other.gameObject.tag != "Enemy")
             return;
 
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 1);
         GetComponent<Collider>().enabled = false;
         target = null;
         vector = Vector3.zero;

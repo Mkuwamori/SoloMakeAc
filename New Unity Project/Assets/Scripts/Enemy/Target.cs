@@ -22,13 +22,21 @@ public class Target : MonoBehaviour
 
     public void Targeting()
     {
+        if (targetingAnim.activeInHierarchy == true)
+            return;
+
         targetingAnim.SetActive(true);
         manager.AddTargetList(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Targeting();
-        Debug.Log("hit");
+        if (other.gameObject.tag == "Search")
+            Targeting();
+    }
+
+    public void TargetCancel()
+    {
+        targetingAnim.SetActive(false);
     }
 }

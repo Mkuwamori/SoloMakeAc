@@ -27,4 +27,14 @@ public class GameManager : MonoBehaviour
     {
         return targetEnemyList;
     }
+
+    public void ClearTargetList()
+    {
+        foreach (var x in targetEnemyList)
+        {
+            x.GetComponent<Target>().TargetCancel();
+        }
+            
+        targetEnemyList.Clear();
+    }
 }

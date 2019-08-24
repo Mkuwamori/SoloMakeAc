@@ -60,6 +60,7 @@ public class PlayerMover : MonoBehaviour
         {
             Instantiate(homingLaser, transform.position + Vector3.up, Quaternion.identity).Target(targets[(int)Mathf.Repeat(i, targets.Count)]);
         }
-                
+
+        manager.ClearTargetList();
     }
 }
