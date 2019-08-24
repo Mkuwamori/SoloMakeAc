@@ -51,4 +51,6 @@ public class CameraManager : MonoBehaviour
             lookAtPos.y + distance * Mathf.Cos(dp),
             lookAtPos.z + distance * Mathf.Sin(dp) * Mathf.Sin(da));
     }
+
+
 }

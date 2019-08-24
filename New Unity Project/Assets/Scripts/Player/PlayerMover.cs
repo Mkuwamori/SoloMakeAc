@@ -8,10 +8,15 @@ public class PlayerMover : MonoBehaviour
     public Vector3 forward { get; set; }
 
     Rigidbody rigid;
+    GameManager manager;
+
+    [SerializeField]
+    HomingLaser homingLaser;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        manager = GameObject.Find("manager").GetComponent<GameManager>();
     }
     
     void Update()
@@ -21,6 +26,9 @@ public class PlayerMover : MonoBehaviour
             Float();
         if (Input.GetKey(KeyCode.LeftShift))
             Sink();
+
+        if (Input.GetMouseButtonDown(1))
+            Shot();
     }
 
     void Move()
@@ -39,5 +47,19 @@ public class PlayerMover : MonoBehaviour
     void Sink()
     {
         rigid.MovePosition(transform.position + Vector3.down * 10 * Time.deltaTime);
+    }
+
+    void Shot()
+    {
+        List<GameObject> targets = manager.TargetingList();
+
+        if (targets == null)
+            return;
+
+        for (int i = 0; i < 10; i++)
+        {
+            Instantiate(homingLaser, transform.position + Vector3.up, Quaternion.identity).Target(targets[(int)Mathf.Repeat(i, targets.Count)]);
+        }
+                
     }
 }
