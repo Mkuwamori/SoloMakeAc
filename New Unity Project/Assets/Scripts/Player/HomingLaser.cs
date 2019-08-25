@@ -8,6 +8,9 @@ public class HomingLaser : MonoBehaviour
     Vector3 vector;
     int count;
 
+    [SerializeField]
+    GameObject bomb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,5 +47,6 @@ public class HomingLaser : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         target = null;
         vector = Vector3.zero;
+        Instantiate(bomb, transform.position, Quaternion.identity);
     }
 }

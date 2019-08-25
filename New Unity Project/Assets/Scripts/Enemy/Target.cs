@@ -7,6 +7,7 @@ public class Target : MonoBehaviour
     [SerializeField]
     GameObject targetingAnim;
     GameManager manager;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class Target : MonoBehaviour
         manager.AddTargetList(gameObject);
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Search")
@@ -38,5 +40,6 @@ public class Target : MonoBehaviour
     public void TargetCancel()
     {
         targetingAnim.SetActive(false);
+        manager.RemoveTargetList(gameObject);
     }
 }

@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     {
         targetEnemyList.Add(add);
     }
+    public void RemoveTargetList(GameObject rem)
+    {
+        targetEnemyList.Remove(rem);
+    }
 
     public List<GameObject> TargetingList()
     {

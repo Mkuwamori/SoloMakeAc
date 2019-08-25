@@ -12,11 +12,14 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField]
     HomingLaser homingLaser;
+    [SerializeField]
+    Collider search;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
         manager = GameObject.Find("manager").GetComponent<GameManager>();
+        search.enabled = false;
     }
     
     void Update()
@@ -27,7 +30,9 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
             Sink();
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
+            search.enabled = true;
+        if (Input.GetMouseButtonUp(0))
             Shot();
     }
 
@@ -61,6 +66,7 @@ public class PlayerMover : MonoBehaviour
             Instantiate(homingLaser, transform.position + Vector3.up, Quaternion.identity).Target(targets[(int)Mathf.Repeat(i, targets.Count)]);
         }
 
+        search.enabled = false;
         manager.ClearTargetList();
     }
 }
