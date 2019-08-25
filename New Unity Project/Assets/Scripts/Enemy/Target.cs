@@ -16,14 +16,17 @@ public class Target : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.rotation = Camera.main.transform.rotation;
+
+        if (Vector3.Magnitude(transform.position - manager.player.transform.position) > 50)
+            TargetCancel();
     }
 
     public void Targeting()
     {
-        if (targetingAnim.activeInHierarchy == true)
+        if (manager.TargetingList().Contains(gameObject))
             return;
 
         targetingAnim.SetActive(true);
@@ -37,9 +40,16 @@ public class Target : MonoBehaviour
             Targeting();
     }
 
+    public void TargetRelease()
+    {
+        targetingAnim.SetActive(false);
+    }
     public void TargetCancel()
     {
         targetingAnim.SetActive(false);
+        if (!manager.TargetingList().Contains(gameObject))
+            return;
+
         manager.RemoveTargetList(gameObject);
     }
 }

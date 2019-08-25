@@ -1810,11 +1810,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 1673466163}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 5
-  m_Height: 50
+  m_Height: 40
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 25}
+  m_Center: {x: 0, y: 0, z: 20}
 --- !u!1 &1706370338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4985817689007637291, guid: 121ede21e6ccdd84e8e903085d74e00c,
@@ -1838,6 +1838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: unitychan_dynamic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985817689007637291, guid: 121ede21e6ccdd84e8e903085d74e00c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4985817689008070417, guid: 121ede21e6ccdd84e8e903085d74e00c,
         type: 3}

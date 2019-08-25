@@ -14,6 +14,7 @@ public class PlayerMover : MonoBehaviour
     HomingLaser homingLaser;
     [SerializeField]
     Collider search;
+    
 
     void Start()
     {
@@ -32,7 +33,7 @@ public class PlayerMover : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
             search.enabled = true;
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
             Shot();
     }
 
@@ -56,17 +57,17 @@ public class PlayerMover : MonoBehaviour
 
     void Shot()
     {
+        search.enabled = false;
         List<GameObject> targets = manager.TargetingList();
 
-        if (targets == null)
+        if (targets.Count == 0)
             return;
-
+        
         for (int i = 0; i < 10; i++)
         {
             Instantiate(homingLaser, transform.position + Vector3.up, Quaternion.identity).Target(targets[(int)Mathf.Repeat(i, targets.Count)]);
         }
-
-        search.enabled = false;
+        
         manager.ClearTargetList();
     }
 }
